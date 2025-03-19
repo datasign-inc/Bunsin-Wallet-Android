@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_certificate">
+
+    <fragment
+        android:id="@+id/navigation_certificate"
+        android:name="jp.datasign.bunsin_wallet.ui.certificate.CertificateFragment"
+        android:label="@string/title_certificate"
+        tools:layout="@layout/fragment_certificate">
+        <action
+            android:id="@+id/action_to_confirmation"
+            app:destination="@id/confirmationFragment" />
+        <action
+            android:id="@+id/action_to_credential_detail"
+            app:destination="@id/credentialDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipientDetailFragment"
+        android:name="jp.datasign.bunsin_wallet.ui.recipient.RecipientDetailFragment"
+        android:label="fragment_recipient_detail"
+        tools:layout="@layout/fragment_recipient_detail">
+        <argument
+            android:name="rp"
+            app:argType="string" />
+        <argument
+            android:name="rpName"
+            app:argType="string" />
+        <argument
+            android:name="rpLocation"
+            app:argType="string" />
+        <argument
+            android:name="rpPrivacyPolicyUrl"
+            app:argType="string" />
+        <argument
+            android:name="rpLogoUrl"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_to_shared_claim_detail"
+            app:destination="@id/sharedClaimDetailFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_recipient"
+        android:name="jp.datasign.bunsin_wallet.ui.recipient.RecipientFragment"
+        android:label="@string/title_recipient"
+        tools:layout="@layout/fragment_recipient">
+        <action
+            android:id="@+id/action_to_recipient_detail"
+            app:destination="@id/recipientDetailFragment"
+            >
+            <argument
+                android:name="rp"
+                app:argType="string" />
+            <argument
+            android:name="rpName"
+            app:argType="string" />
+
+            <argument
+                android:name="rpLocation"
+                app:argType="string" />
+            <argument
+                android:name="rpPrivacyPolicyUrl"
+                app:argType="string" />
+            <argument
+                android:name="rpLogoUrl"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/sharedClaimDetailFragment"
+        android:name="jp.datasign.bunsin_wallet.ui.recipient.SharedClaimDetailFragment"
+        android:label="fragment_shared_claim_detail"
+        tools:layout="@layout/fragment_shared_claim_detail">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_reader"
+        android:name="jp.datasign.bunsin_wallet.ui.reader.ReaderFragment"
+        android:label="@string/title_reader"
+        tools:layout="@layout/fragment_reader" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="jp.datasign.bunsin_wallet.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_navigation_settings_to_backupFragment"
+            app:destination="@id/backupFragment" />
+        <action
+            android:id="@+id/action_navigation_settings_to_webViewFragment"
+            app:destination="@id/webview_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmationFragment"
+        android:name="jp.datasign.bunsin_wallet.ui.confirmation.ConfirmationFragment"
+        android:label="fragment_confirmation"
+        tools:layout="@layout/fragment_confirmation">
+        <argument
+            android:name="parameterValue"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialDetailFragment"
+        android:name="jp.datasign.bunsin_wallet.ui.credential_detail.CredentialDetailFragment"
+        android:label="fragment_credential_detail"
+        tools:layout="@layout/fragment_credential_detail">
+        <argument
+            android:name="credentialId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_to_issuerDetailFragment"
+            app:destination="@id/issuerDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/issuerDetailFragment"
+        android:name="jp.datasign.bunsin_wallet.ui.issuer_detail.IssuerDetailFragment"
+        android:label="fragment_issuer_detail"
+        tools:layout="@layout/fragment_issuer_detail">
+        <argument
+            android:name="credentialId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_token_sharring"
+        android:name="jp.datasign.bunsin_wallet.ui.siop_vp.request_content.RequestContentFragment"
+        >
+        <argument
+            android:name="siopRequest"
+            app:argType="string" />
+        <argument
+            android:name="index"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_id_token_sharring_to_flow2"
+            app:destination="@id/id_token_sharring_flow2" />
+        <action
+            android:id="@+id/action_id_token_sharring_to_webViewFragment"
+            app:destination="@id/webview_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_token_sharring_flow2"
+        android:name="jp.datasign.bunsin_wallet.ui.siop_vp.credential_selection.CredentialSelectionFragment"
+        >
+        <action
+            android:id="@+id/action_id_token_sharring_to_flow3"
+            app:destination="@id/id_token_sharring_flow3" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_token_sharring_flow3"
+        android:name="jp.datasign.bunsin_wallet.ui.siop_vp.shared_data_confirmation.SharedDataConfirmationFragment"
+        >
+        <argument
+            android:name="credentialId"
+            app:argType="string"
+            app:nullable="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/credential_verification"
+        android:name="jp.datasign.bunsin_wallet.ui.verification.CredentialVerificationFragment"
+        tools:layout="@layout/fragment_credential_verification">
+        <argument
+            android:name="format"
+            app:argType="string" />
+        <argument
+            android:name="credential"
+            app:argType="string" />
+        <argument
+            android:name="display"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/webview_fragment"
+        android:name="jp.datasign.bunsin_wallet.WebViewFragment"
+        android:label="fragment_webview"
+        tools:layout="@layout/fragment_webview">
+        <argument
+            android:name="url"
+            app:argType="string" />
+        <argument
+            android:name="cookies"
+            app:argType="string[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/backupFragment"
+        android:name="jp.datasign.bunsin_wallet.ui.backup.BackupFragment"
+        android:label="fragment_backup"
+        tools:layout="@layout/fragment_backup" />
+    <fragment
+        android:id="@+id/restoreFragment"
+        android:name="jp.datasign.bunsin_wallet.ui.backup.RestoreFragment"
+        android:label="fragment_restore"
+        tools:layout="@layout/fragment_restore" />
+</navigation>

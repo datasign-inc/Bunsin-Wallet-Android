@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "jp.datasign.bunsin_wallet.datastore";
+option java_multiple_files = true;
+
+message IdTokenSharingHistory {
+  string rp = 1;
+  int32 accountIndex = 2;
+  google.protobuf.Timestamp createdAt = 3;
+  string accountUseCase = 4;
+  string thumbprint = 5;
+}
+
+message IdTokenSharingHistories {
+  repeated IdTokenSharingHistory items = 1;
+}
+
